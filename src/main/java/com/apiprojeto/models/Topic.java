@@ -4,18 +4,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 @Entity
 public class Topic {
     @Id
     @GeneratedValue
-	
+    @SequenceGenerator(name = "TOPISEQ", allocationSize = 1, initialValue = 1, sequenceName = "TOPI_SEQ")
     private Long id;
 	private Integer ammountPublication;
 	
 	@Column(nullable=false)
-	private String nome;
+	private String name;
 	@Column(nullable=false)
-	private String nomeUrl;
+	private String nameUrl;
+	
 	public Long getId() {
 		return id;
 	}
@@ -28,19 +30,17 @@ public class Topic {
 	public void setAmmountPublication(Integer ammountPublication) {
 		this.ammountPublication = ammountPublication;
 	}
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getNomeUrl() {
-		return nomeUrl;
+	public String getNameUrl() {
+		return nameUrl;
 	}
-	public void setNomeUrl(String nomeUrl) {
-		this.nomeUrl = nomeUrl;
+	public void setNameUrl(String nameUrl) {
+		this.nameUrl = nameUrl;
 	}
-	
-	
-	
+		
 }
