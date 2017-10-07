@@ -6,7 +6,7 @@ public class Login {
 
 	private Long id;
 	@Column(nullable=false)
-	private String User;
+	private String user;
 	@Column(nullable=false)
 	private String password;
 	
@@ -17,11 +17,13 @@ public class Login {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	
 	public String getUser() {
-		return User;
+		return user;
 	}
 	public void setUser(String user) {
-		User = user;
+		this.user = user;
 	}
 	public String getPassword() {
 		return password;

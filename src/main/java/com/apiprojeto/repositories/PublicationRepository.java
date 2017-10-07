@@ -7,7 +7,7 @@ import com.apiprojeto.models.Publication;
 public interface PublicationRepository extends JpaRepository<Publication, Long> {
 
 	public void findByTitleUrl();
-	public void findByAssunto();
+	public void findByTopic();
 	public void findByTitleContaing();
 	public void findByAmmountViewGreaterThanOrderByAmmountViewDesc(int i);
 	public void findByStarGreaterThanOrderByStarDesc(int i);

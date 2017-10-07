@@ -5,14 +5,21 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.Type;
-
+@Entity
 public class Publication {
-      
+    @Id
+    @GeneratedValue
+    @SequenceGenerator(name = "PUBLISEQ", allocationSize = 1, initialValue = 1, sequenceName = "PUBLI_SEQ")
 	private Long id;
 	@Column(nullable=false)
 	private String title;
@@ -28,8 +35,8 @@ public class Publication {
 	private Integer star;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Comment> comments;
-	@OneToMany
-	private Topic assunto;
+	@OneToOne
+	private Topic topic;
 	
 	
 	public Long getId() {
@@ -86,13 +93,13 @@ public class Publication {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	public Topic getAssunto() {
-		return assunto;
+	public Topic getTopic() {
+		return topic;
 	}
-	public void setAssunto(Topic assunto) {
-		this.assunto = assunto;
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
-	
+
 	
 	
 	
