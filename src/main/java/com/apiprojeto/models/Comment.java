@@ -21,7 +21,7 @@ public class Comment {
 	@Type(type = "org.hibernate.type.TextType")
 	private String text;
 	@Column(nullable=false)
-	private Date date;
+	private static Date date;
 	
 	
 	public Long getId() {
@@ -36,11 +36,11 @@ public class Comment {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public Date getDate() {
+	public static Date getDate() {
 		return date;
 	}
 	public void setDate(Date date) {
-		this.date = date;
+		Comment.date = date;
 	}
 	
 	

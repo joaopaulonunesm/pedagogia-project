@@ -14,4 +14,8 @@ public class LoginService {
 	public Login save(Login login) {
 		return loginRepository.save(login);
 	}
+	public Login findOne(Long id) {
+		return loginRepository.findOne(id);
+	}
+	
 }
