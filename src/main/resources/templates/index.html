@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="queroEventoApp">
+<head>
+<meta charset="UTF-8" />
+
+<title>Pedagogia</title>
+<link href="images/ico.ico" rel="shortcut icon" />
+
+<link rel="stylesheet" href="lib/css/materialize.css" />
+
+<script src="lib/js/jquery-3.2.1.min.js"></script>
+<script src="lib/js/angular.js"></script>
+<script src="lib/js/materialize.js"></script>
+<script src="lib/js/angular-materialize.min.js"></script>
+<script src="lib/js/angular-route.js"></script>
+
+<script src="js/app.js"></script>
+<script src="js/configs/routeConfig.js"></script>
+<script src="js/configs/baseUrl.js"></script>
+
+<script src="js/directives/ngEnterDirective.js"></script>
+
+<script src="js/controllers/login/loginCtrl.js"></script>
+<script src="js/controllers/event/index/eventCtrl.js"></script>
+<script src="js/controllers/event/index/searchEventCtrl.js"></script>
+<script src="js/controllers/event/index/eventByCategoryCtrl.js"></script>
+<script src="js/controllers/event/index/eventByUrlTitleCtrl.js"></script>
+<script src="js/controllers/event/index/eventByCompanyCtrl.js"></script>
+<script src="js/controllers/category/categoryCtrl.js"></script>
+
+<script src="js/services/categoryAPIService.js"></script>
+<script src="js/services/eventAPIService.js"></script>
+<script src="js/services/loginAPIService.js"></script>
+<script src="js/services/companyAPIService.js"></script>
+
+
+<link rel="stylesheet" href="lib/css/styles.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+</head>
+<body ng-controller="searchEventCtrl">
+	
+	<div ng-controller= "categoryCtrl">
+	
+		<div ng-include="'views/index/navbar.html'"></div>
+	
+		<ng-view></ng-view>
+		
+		<div ng-include="'views/index/component/parcerias.html'"></div>
+
+		<div ng-include="'views/index/footer.html'"></div>
+		
+	</div>
+	
+</body>
+</html>
