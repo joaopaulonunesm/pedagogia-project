@@ -1,6 +1,5 @@
 package com.pedagogiaproject.services;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,24 +26,37 @@ public class PublicationService {
 		return publicationRepository.findByTitleUrl(publication);
 	}
 
-	public List<Publication> findByTopic(String nameTopic) {
-		return publicationRepository.findByTopic(nameTopic);
+	public List<Publication> findByTopicName(String nameTopic) {
+		return publicationRepository.findByTopicName(nameTopic);
 	}
 
 	public List<Publication> findByTitleContaing(String title) {
 		return publicationRepository.findByTitleContaining(title);
 	}
 
-	public List<Publication> findByAmmountViewGreaterThanOrderByAmmountViewDesc(int greaterThan) {
-		return publicationRepository.findByAmmountViewGreaterThanOrderByAmmountViewDesc(greaterThan);
+	public List<Publication> findByAmmountView() {
+		return publicationRepository.findByOrderByAmmountViewDesc();
 	}
 
-	public List<Publication> findByStarGreaterThanOrderByStarDesc(int greaterThan) {
-		return publicationRepository.findByStarGreaterThanOrderByStarDesc(greaterThan);
+	public List<Publication> findByOrderByStarDesc() {
+		return publicationRepository.findByOrderByStarDesc();
 	}
 
-	public List<Publication> findByOrderByDate(Date date) {
-		return publicationRepository.findByOrderByDate(date);
+	public List<Publication> findByOrderByDate() {
+		return publicationRepository.findByOrderByDate();
+	}
+
+	public String titleToTitleUrl(Publication publication) {
+
+		String urlTitle = publication.getTitle().replaceAll(" ", "-").replaceAll("[ãâàáä]", "a")
+				.replaceAll("[êèéë]", "e").replaceAll("[îìíï]", "i").replaceAll("[õôòóö]", "o")
+				.replaceAll("[ûúùü]", "u").replaceAll("[ÃÂÀÁÄ]", "A").replaceAll("[ÊÈÉË]", "E")
+				.replaceAll("[ÎÌÍÏ]", "I").replaceAll("[ÕÔÒÓÖ]", "O").replaceAll("[ÛÙÚÜ]", "U").replace('ç', 'c')
+				.replace('Ç', 'C').replace('ñ', 'n').replace('Ñ', 'N');
+
+		urlTitle = urlTitle.toLowerCase() + "-" + publication.hashCode();
+
+		return urlTitle;
 	}
 
 }

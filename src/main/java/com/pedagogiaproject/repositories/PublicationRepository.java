@@ -1,6 +1,5 @@
 package com.pedagogiaproject.repositories;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,13 +12,13 @@ public interface PublicationRepository extends JpaRepository<Publication, Long> 
 
 	public Publication findByTitleUrl(String publication);
 
-	public List<Publication> findByTopic(String topic);
+	public List<Publication> findByTopicName(String topic);
 
 	public List<Publication> findByTitleContaining(String title);
 
-	public List<Publication> findByAmmountViewGreaterThanOrderByAmmountViewDesc(int greaterThan);
+	public List<Publication> findByOrderByAmmountViewDesc();
 
-	public List<Publication> findByStarGreaterThanOrderByStarDesc(int greaterThan);
+	public List<Publication> findByOrderByStarDesc();
 
-	public List<Publication> findByOrderByDate(Date date);
+	public List<Publication> findByOrderByDate();
 }

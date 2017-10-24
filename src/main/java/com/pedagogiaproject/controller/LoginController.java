@@ -20,7 +20,7 @@ public class LoginController {
 	private LoginService loginService;
 
 	@RequestMapping(value = "/logins/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Login> changeLogin(@RequestBody Login login, @PathVariable Long id) {
+	public ResponseEntity<Login> saveLogin(@RequestBody Login login, @PathVariable Long id) {
 
 		String userCurrent = loginService.findOne(id).getUser();
 
