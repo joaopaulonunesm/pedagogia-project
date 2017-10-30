@@ -1,43 +1,52 @@
-angular.module("queroEventoApp").config(function ($routeProvider) {
+angular.module("pedagogiaApp").config(function ($routeProvider) {
 	
 	$routeProvider.when("/", {
 		templateUrl: "views/admin/home.html"
 	});
 	
+	$routeProvider.when("/topics", {
+		templateUrl: "views/admin/assuntos.html",
+		controller: "topicCtrl"
+	});
+	
+	$routeProvider.when("/comments", {
+		templateUrl: "views/admin/comentarios.html",
+		controller: "commentCtrl"
+	});
+	
 	$routeProvider.when("/login", {
-		templateUrl: "views/admin/login.html"
-	});
-
-	$routeProvider.when("/event/insert", {
-		templateUrl: "views/admin/component/novoEvento.html"
-	});
-
-	$routeProvider.when("/event/list", {
-		templateUrl: "views/admin/component/eventos.html",
-		controller: "adminEventCtrl"
+		templateUrl: "views/admin/login.html",
+		controller: "loginCtrl"
 	});
 	
-	$routeProvider.when("/event/edit/:url", {
-		templateUrl: "views/admin/component/editarEvento.html",
-		controller: "adminEditEventCtrl"
-	});
-
-	$routeProvider.when("/event/preview/:url", {
-		templateUrl: "views/admin/component/visualizarEvento.html",
-		controller: "adminEditEventCtrl"
+	$routeProvider.when("/publications", {
+		templateUrl: "views/admin/publicacoes.html",
+		controller: "allPublicationCtrl"
 	});
 	
-	$routeProvider.when("/offer", {
-		templateUrl: "views/admin/component/ofertas.html"
+	$routeProvider.when("/publications/insert", {
+		templateUrl: "views/admin/component/novaPublicacao.html",
+		controller: "newPublicationCtrl"
 	});
-
-	$routeProvider.when("/settings", {
-		templateUrl: "views/admin/component/configuracao.html"
+	
+	$routeProvider.when("/publications/edit/:titleUrl", {
+		templateUrl: "views/admin/component/editarPublicacao.html",
+		controller: "onePublicationCtrl"
 	});
-
-	$routeProvider.when("/profile/:nameUrl", {
-		templateUrl: "views/admin/component/perfil.html",
-		controller: "eventByCompanyCtrl"
+	
+	$routeProvider.when("/partners", {
+		templateUrl: "views/admin/parcerias.html",
+		controller: "allPartnerCtrl"
+	});
+	
+	$routeProvider.when("/partners/insert", {
+		templateUrl: "views/admin/component/novaParceria.html",
+		controller: "newPartnerCtrl"
+	});
+	
+	$routeProvider.when("/partners/edit/:nameUrl", {
+		templateUrl: "views/admin/component/editarParceria.html",
+		controller: "onePartnerCtrl"
 	});
 		
 	$routeProvider.otherwise({redirectTo: "/"});

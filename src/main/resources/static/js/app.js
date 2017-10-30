@@ -1,1 +1,1 @@
-angular.module("queroEventoApp", ["ngRoute", 'ui.materialize']);
+angular.module("pedagogiaApp", ["ngRoute", 'ui.materialize']);

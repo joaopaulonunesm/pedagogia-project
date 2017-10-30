@@ -26,12 +26,16 @@ public class PublicationService {
 		return publicationRepository.findByTitleUrl(publication);
 	}
 
-	public List<Publication> findByTopicName(String nameTopic) {
-		return publicationRepository.findByTopicName(nameTopic);
+	public List<Publication> findByTopicNameUrl(String nameTopic) {
+		return publicationRepository.findByTopicNameUrl(nameTopic);
 	}
 
-	public List<Publication> findByTitleContaing(String title) {
-		return publicationRepository.findByTitleContaining(title);
+	public List<Publication> findByTitleContaingIgnoreCase(String title) {
+		return publicationRepository.findByTitleContainingIgnoreCase(title);
+	}
+	
+	public List<Publication> findByTextContaingIgnoreCase(String word) {
+		return publicationRepository.findByTextContainingIgnoreCase(word);
 	}
 
 	public List<Publication> findByAmmountView() {
@@ -58,5 +62,7 @@ public class PublicationService {
 
 		return urlTitle;
 	}
+
+
 
 }

@@ -12,13 +12,15 @@ public interface PublicationRepository extends JpaRepository<Publication, Long> 
 
 	public Publication findByTitleUrl(String publication);
 
-	public List<Publication> findByTopicName(String topic);
+	public List<Publication> findByTopicNameUrl(String topic);
 
-	public List<Publication> findByTitleContaining(String title);
+	public List<Publication> findByTitleContainingIgnoreCase(String title);
 
 	public List<Publication> findByOrderByAmmountViewDesc();
 
 	public List<Publication> findByOrderByStarDesc();
 
 	public List<Publication> findByOrderByDate();
+
+	public List<Publication> findByTextContainingIgnoreCase(String word);
 }

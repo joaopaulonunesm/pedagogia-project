@@ -1,0 +1,59 @@
+<meta charset="UTF-8" />
+
+<div class="container">
+    <div class="row">
+    
+    	<div class="col s12">
+			<nav style="margin-top: 8px">
+				<div class="nav-wrapper white">
+			   		<div class="col s12">
+			     	<a href="#/" class="breadcrumb blue-text font-bold">HOME</a>
+			     	<a class="breadcrumb blue-text font-bold">ASSUNTOS</a>
+			  		</div>
+				</div>
+			</nav>
+			
+			<br />
+			
+			<div class="row">
+			    <div class="col s6">
+			    
+					<ul class="collapsible" data-collapsible="accordion">
+					  <li>
+					    <div class="collapsible-header">
+					    	<i class="material-icons blue-text">add</i>
+					    	NOVO ASSUNTO
+					    </div>
+					    <div class="collapsible-body">
+		    				<div class="row">
+								<div class="input-field col s12">
+								    <input id="title" type="text" class="validate" ng-model="topic.name">
+								    <label for="title">Nome</label>
+								    <a class="waves-effect waves-light btn blue right" ng-click="createTopic()">CRIAR</a>
+								</div>
+							</div>
+						</div>
+					  </li>
+					</ul>
+			    
+			    </div>
+			    <div class="col s6">
+			        <div class="input-field col s12">
+			            <i class="material-icons prefix">search</i>
+			            <input id="first_name" type="text" ng-model="search">
+			            <label for="first_name">Procure o assunto</label>
+			        </div>
+			    </div>
+			</div>
+			
+		    <ul class="collection">
+		    
+		      <li class="collection-item" ng-repeat="topic in topics | filter: search">
+		      	<span class="new badge blue" data-badge-caption="Publicações">{{ topic.ammountPublication }}</span>
+		      	{{ topic.name }}
+		      </li>
+		    </ul>
+			
+		</div>
+	</div>
+</div>

@@ -30,7 +30,11 @@ public class Publication {
 	private String titleUrl;
 	@Column(nullable = false)
 	private Date date;
-	private String mediaUrl;
+	private String photoUrl;
+	private String videoUrl;
+	@Lob
+	@Type(type = "org.hibernate.type.TextType")
+	private String summary;
 	@Lob
 	@Type(type = "org.hibernate.type.TextType")
 	private String text;
@@ -73,12 +77,28 @@ public class Publication {
 		this.date = date;
 	}
 
-	public String getMediaUrl() {
-		return mediaUrl;
+	public String getPhotoUrl() {
+		return photoUrl;
 	}
 
-	public void setMediaUrl(String mediaUrl) {
-		this.mediaUrl = mediaUrl;
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
+	}
+
+	public String getVideoUrl() {
+		return videoUrl;
+	}
+
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
+	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
 
 	public String getText() {

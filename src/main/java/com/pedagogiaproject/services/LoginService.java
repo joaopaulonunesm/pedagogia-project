@@ -16,8 +16,8 @@ public class LoginService {
 		return loginRepository.save(login);
 	}
 
-	public Login findOne(Long id) {
-		return loginRepository.findOne(id);
+	public Login findOne() {
+		return loginRepository.findAll().get(0);
 	}
 
 }

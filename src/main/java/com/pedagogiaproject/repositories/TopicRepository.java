@@ -12,10 +12,10 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
 
 	Topic findByNameUrl(String nameUrl);
 
-	Topic findByName(String name);
+	Topic findByNameIgnoreCase(String name);
 
 	List<Topic> findByNameContaining(String name);
 
-	List<Topic> findByOrderByAmmountPublicationDesc();
+	List<Topic> findByAmmountPublicationGreaterThanOrderByAmmountPublicationDesc(int greaterThan);
 
 }

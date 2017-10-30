@@ -51,7 +51,7 @@ public class TopicController {
 
 		topic.setId(currentTopic.getId());
 
-		return new ResponseEntity<>(topicService.save(topic), HttpStatus.CREATED);
+		return new ResponseEntity<>(topicService.save(topic), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/topics/{nameUrl}", method = RequestMethod.DELETE)
@@ -87,7 +87,7 @@ public class TopicController {
 	@RequestMapping(value = "/topics/ammountpublication", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Topic>> getTopicByAmmountPublication() {
 
-		return new ResponseEntity<>(topicService.findByOrderByAmmountPublication(), HttpStatus.OK);
+		return new ResponseEntity<>(topicService.findByAmmountPublicationGreaterThanOrderByAmmountPublicationDesc(), HttpStatus.OK);
 	}
 
 }

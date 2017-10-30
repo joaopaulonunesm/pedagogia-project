@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html ng-app="queroEventoApp">
+<html ng-app="pedagogiaApp">
 <head>
 <meta charset="UTF-8" />
 
-<title>Quero Evento - Admin</title>
+<title>Pedagogia - Admin</title>
 <link href="images/ico.ico" rel="shortcut icon" />
 
 <link rel="stylesheet" href="lib/css/materialize.css" />
@@ -18,27 +18,35 @@
 <script src="js/configs/routeConfigAdmin.js"></script>
 <script src="js/configs/baseUrl.js"></script>
 
-<script src="js/controllers/login/loginCtrl.js"></script>
-<script src="js/controllers/event/adminEventCtrl.js"></script>
-<script src="js/controllers/event/adminEditEventCtrl.js"></script>
-<script src="js/controllers/category/categoryModeratorCtrl.js"></script>
-<script src="js/controllers/event/index/eventByCompanyCtrl.js"></script>
-
-<script src="js/services/categoryAPIService.js"></script>
-<script src="js/services/eventAPIService.js"></script>
+<script src="js/services/commentAPIService.js"></script>
 <script src="js/services/loginAPIService.js"></script>
-<script src="js/services/companyAPIService.js"></script>
+<script src="js/services/partnerAPIService.js"></script>
+<script src="js/services/publicationAPIService.js"></script>
+<script src="js/services/topicAPIService.js"></script>
 
+<script src="js/controllers/comment/commentCtrl.js"></script>
+
+<script src="js/controllers/login/loginCtrl.js"></script>
+
+<script src="js/controllers/partner/allPartnerCtrl.js"></script>
+<script src="js/controllers/partner/newPartnerCtrl.js"></script>
+<script src="js/controllers/partner/onePartnerCtrl.js"></script>
+
+<script src="js/controllers/publication/allPublicationCtrl.js"></script>
+<script src="js/controllers/publication/newPublicationCtrl.js"></script>
+<script src="js/controllers/publication/onePublicationCtrl.js"></script>
+
+<script src="js/controllers/topic/topicCtrl.js"></script>
 
 <link rel="stylesheet" href="lib/css/styles.css" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
 </head>
-<body ng-controller="loginCtrl">
+<body>
 
 	<div ng-include="'views/admin/navbar.html'"></div>
 
-	<div ng-controller="adminEventCtrl">
+	<div>
 		<ng-view></ng-view>
 	</div>
 

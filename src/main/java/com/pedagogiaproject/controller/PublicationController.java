@@ -1,7 +1,12 @@
 package com.pedagogiaproject.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import javax.servlet.ServletException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,7 +37,11 @@ public class PublicationController {
 	private CommentService commentService;
 
 	@RequestMapping(value = "/publications", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Publication> postPublication(@RequestBody Publication publication) {
+	public ResponseEntity<Publication> postPublication(@RequestBody Publication publication) throws ServletException {
+
+		if (publication.getSummary().isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 
 		if (publication.getTitle().isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -42,19 +51,28 @@ public class PublicationController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		Topic topic = topicService.findByName(publication.getTopic().getName());
+		Topic topic = topicService.findOne(publication.getTopic().getId());
 
 		if (topic == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
-		if (publication.getMediaUrl().isEmpty() && publication.getText().isEmpty()) {
+		if (publication.getPhotoUrl() == null && publication.getVideoUrl() == null && publication.getText() == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+		if ((publication.getPhotoUrl() != null && publication.getPhotoUrl().isEmpty())
+				&& (publication.getVideoUrl() != null && publication.getVideoUrl().isEmpty())
+				&& (publication.getText() != null && publication.getText().isEmpty())) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
 		publication.setDate(new Date());
 		publication.setAmmountView(0);
 		publication.setTitleUrl(publicationService.titleToTitleUrl(publication));
+
+		topic.setAmmountPublication(topic.getAmmountPublication() + 1);
+		topicService.save(topic);
 
 		return new ResponseEntity<>(publicationService.save(publication), HttpStatus.CREATED);
 	}
@@ -69,6 +87,10 @@ public class PublicationController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
+		if (publication.getSummary().isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
 		if (publication.getTitle().isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -77,13 +99,14 @@ public class PublicationController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		Topic topic = topicService.findByName(publication.getTopic().getName());
+		Topic topic = topicService.findByNameIgnoreCase(publication.getTopic().getName());
 
 		if (topic == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
-		if (publication.getMediaUrl().isEmpty() && publication.getText().isEmpty()) {
+		if (publication.getPhotoUrl().isEmpty() && publication.getText().isEmpty()
+				&& publication.getVideoUrl().isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
@@ -91,7 +114,7 @@ public class PublicationController {
 
 		publication.setId(currentPublication.getId());
 
-		return new ResponseEntity<>(publicationService.save(publication), HttpStatus.CREATED);
+		return new ResponseEntity<>(publicationService.save(publication), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/publications/{titleUrl}", method = RequestMethod.DELETE)
@@ -104,6 +127,10 @@ public class PublicationController {
 		}
 
 		commentService.deleteAllByPublication(publication);
+
+		Topic topic = publication.getTopic();
+		topic.setAmmountPublication(topic.getAmmountPublication() - 1);
+		topicService.save(topic);
 
 		publicationService.delete(publication.getId());
 
@@ -122,16 +149,33 @@ public class PublicationController {
 		return new ResponseEntity<>(publication, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/publications/title/containg/{title}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Publication>> getPublicationByTitleContaing(@PathVariable String title) {
+	@RequestMapping(value = "/publications/containg/{word}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Set<Publication>> getPublicationByWord(@PathVariable String word) {
 
-		return new ResponseEntity<>(publicationService.findByTitleContaing(title), HttpStatus.OK);
+		List<Publication> byTitle = publicationService.findByTitleContaingIgnoreCase(word);
+
+		List<Publication> byText = publicationService.findByTextContaingIgnoreCase(word);
+
+		List<Publication> byTopic = new ArrayList<>();
+
+		Topic topic = topicService.findByNameIgnoreCase(word);
+
+		if (topic != null) {
+			byTopic = publicationService.findByTopicNameUrl(topic.getName());
+		}
+
+		Set<Publication> publications = new HashSet<>();
+		publications.addAll(byTopic);
+		publications.addAll(byTitle);
+		publications.addAll(byText);
+
+		return new ResponseEntity<>(publications, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/publications/topic/{topic}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Publication>> getPublicationByTopic(@PathVariable String topic) {
 
-		return new ResponseEntity<>(publicationService.findByTopicName(topic), HttpStatus.OK);
+		return new ResponseEntity<>(publicationService.findByTopicNameUrl(topic), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/publications/view", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

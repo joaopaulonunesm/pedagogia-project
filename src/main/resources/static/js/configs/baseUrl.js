@@ -1,10 +1,10 @@
-angular.module("queroEventoApp").value("configs", {
+angular.module("pedagogiaApp").value("configs", {
 
-	//baseUrl: "http://localhost:8080",
-	//siteUrl: "http://localhost:8080",
+	baseUrl: "http://localhost:8080",
+	siteUrl: "http://localhost:8080",
 
-	baseUrl: "https://queroevento.herokuapp.com",
-	siteUrl: "http://www.queroevento.com",
+	//baseUrl: "https://pedagogiaproject.herokuapp.com",
+	//siteUrl: "https://pedagogiaproject.herokuapp.com",
 
 	version: "/v1"
 });

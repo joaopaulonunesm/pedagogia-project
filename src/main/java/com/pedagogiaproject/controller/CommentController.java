@@ -1,6 +1,7 @@
 package com.pedagogiaproject.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -58,6 +59,12 @@ public class CommentController {
 		commentService.delete(id);
 
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/comments", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Comment>> getComments() {
+
+		return new ResponseEntity<>(commentService.findAll(), HttpStatus.OK);
 	}
 
 }

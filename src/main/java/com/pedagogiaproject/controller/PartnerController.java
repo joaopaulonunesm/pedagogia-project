@@ -33,7 +33,7 @@ public class PartnerController {
 		return new ResponseEntity<>(partnerService.save(partner), HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/partners/{nameUrl}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/partners/{nameUrl}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Partner> putPartner(@RequestBody Partner partner, @PathVariable String nameUrl) {
 
 		Partner currentPartner = partnerService.findByNameUrl(nameUrl);
@@ -50,7 +50,21 @@ public class PartnerController {
 
 		partner.setId(currentPartner.getId());
 
-		return new ResponseEntity<>(partnerService.save(partner), HttpStatus.CREATED);
+		return new ResponseEntity<>(partnerService.save(partner), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/partners/{nameUrl}", method = RequestMethod.DELETE)
+	public ResponseEntity<Partner> deletePartner(@PathVariable String nameUrl) {
+
+		Partner partner = partnerService.findByNameUrl(nameUrl);
+
+		if (partner == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		partnerService.delete(partner.getId());
+
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/partners", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -59,13 +73,7 @@ public class PartnerController {
 		return new ResponseEntity<>(partnerService.findAll(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/partners/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Partner>> getPartnersByNameContaing(@PathVariable String name) {
-
-		return new ResponseEntity<>(partnerService.findByNameContaing(name), HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/partners/{nameUrl}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/partners/name/url/{nameUrl}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Partner> getPartnersByNameUrl(@PathVariable String nameUrl) {
 
 		return new ResponseEntity<>(partnerService.findByNameUrl(nameUrl), HttpStatus.OK);

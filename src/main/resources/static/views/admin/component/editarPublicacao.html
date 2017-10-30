@@ -1,0 +1,69 @@
+<meta charset="UTF-8" />
+
+<div class="container">
+    <div class="row">
+    	
+    	<div class="col s12">
+			<nav style="margin-top: 8px">
+				<div class="nav-wrapper white">
+			   		<div class="col s12">
+			     	<a href="#/" class="breadcrumb blue-text font-bold">HOME</a>
+			     	<a href="#/publications" class="breadcrumb blue-text font-bold">PUBLCIAÇÕES</a>
+			     	<a class="breadcrumb blue-text font-bold">EDITAR PUBLICAÇÃO</a>
+			  		</div>
+				</div>
+			</nav>
+			
+		</div>
+		
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="input-field col s12">
+		    <input id="title" type="text" class="validate" ng-model="publication.title">
+		    <label for="title">Título</label>
+		</div>
+		<div input-field class="col s12">
+			<select id="topic" class="" material-select watch ng-controller="topicCtrl" ng-model="publication.topic.id">
+	        	<option ng-repeat="topic in topics" ng-value="topic.id"> {{ topic.name }}</option>
+	        </select>
+	        <label for="topic">Categoria</label>
+	    </div>
+	</div>
+	<div class="row">
+		<div class="input-field col s6">
+			<div input-field>
+		    	<i class="material-icons prefix">image</i>
+				<input id="image" type="text" ng-model="publication.photoUrl">
+		        <label for="image">Imagem (URL)</label>
+		        <img materialboxed class="materialboxed responsive-img" width="650" ng-src="{{ publication.photoUrl }}">
+			</div>
+		</div>
+		<div class="input-field col s6">
+			<div input-field>
+		    	<i class="material-icons prefix">video_library</i>
+				<input id="video" type="text" ng-model="publication.videoUrl">
+		        <label for="video">Vídeo (URL YOUTUBE)</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+        <div class="input-field col s12">
+          <textarea id="short_description" class="materialize-textarea" ng-model="publication.summary"></textarea>
+          <label for="short_description">Resumo</label>
+        </div>
+        <div class="input-field col s12">
+          <textarea id="description" class="materialize-textarea" ng-model="publication.text"></textarea>
+          <label for="description">Texto</label>
+        </div>
+	</div>
+
+	<div class="row">
+	    <div class="col s6 offset-s6" style="text-align: right">
+	        <a href="#/publication/list" class="waves-effect waves-light btn grey">CANCELAR</a>
+	        <a class="waves-effect waves-light btn blue" ng-click="createPublication()">SALVAR</a>
+	    </div>
+	</div>
+</div>

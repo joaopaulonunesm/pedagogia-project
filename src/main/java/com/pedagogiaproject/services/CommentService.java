@@ -1,5 +1,7 @@
 package com.pedagogiaproject.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +46,10 @@ public class CommentService {
 				}
 			}
 		}
+	}
+
+	public List<Comment> findAll() {
+		return commentRepository.findAll();
 	}
 
 }

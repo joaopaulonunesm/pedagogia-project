@@ -1,0 +1,5 @@
+<meta charset="UTF-8" />
+<ul class="collection with-header" ng-controller="allPartnerCtrl">
+    <li class="collection-header blue"><h5 class="white-text">PARCEIROS</h5></li>
+    <a ng-repeat="partner in partners" ng-href="#/partner/{{ partner.nameUrl }}" class="collection-item blue-text">{{ partner.name }}</a>
+</ul>

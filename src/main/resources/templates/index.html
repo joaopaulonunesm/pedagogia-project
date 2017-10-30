@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="queroEventoApp">
+<html ng-app="pedagogiaApp">
 <head>
 <meta charset="UTF-8" />
 
@@ -20,33 +20,41 @@
 
 <script src="js/directives/ngEnterDirective.js"></script>
 
-<script src="js/controllers/login/loginCtrl.js"></script>
-<script src="js/controllers/event/index/eventCtrl.js"></script>
-<script src="js/controllers/event/index/searchEventCtrl.js"></script>
-<script src="js/controllers/event/index/eventByCategoryCtrl.js"></script>
-<script src="js/controllers/event/index/eventByUrlTitleCtrl.js"></script>
-<script src="js/controllers/event/index/eventByCompanyCtrl.js"></script>
-<script src="js/controllers/category/categoryCtrl.js"></script>
-
-<script src="js/services/categoryAPIService.js"></script>
-<script src="js/services/eventAPIService.js"></script>
+<script src="js/services/commentAPIService.js"></script>
 <script src="js/services/loginAPIService.js"></script>
-<script src="js/services/companyAPIService.js"></script>
+<script src="js/services/partnerAPIService.js"></script>
+<script src="js/services/publicationAPIService.js"></script>
+<script src="js/services/topicAPIService.js"></script>
 
+<script src="js/controllers/comment/commentCtrl.js"></script>
+
+<script src="js/controllers/login/loginCtrl.js"></script>
+
+<script src="js/controllers/partner/allPartnerCtrl.js"></script>
+<script src="js/controllers/partner/newPartnerCtrl.js"></script>
+<script src="js/controllers/partner/onePartnerCtrl.js"></script>
+
+<script src="js/controllers/publication/allPublicationCtrl.js"></script>
+<script src="js/controllers/publication/newPublicationCtrl.js"></script>
+<script src="js/controllers/publication/onePublicationCtrl.js"></script>
+<script src="js/controllers/publication/publicationByTopicCtrl.js"></script>
+<script src="js/controllers/publication/publicationByWordCtrl.js"></script>
+
+<script src="js/controllers/topic/topicCtrl.js"></script>
 
 <link rel="stylesheet" href="lib/css/styles.css" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
 </head>
-<body ng-controller="searchEventCtrl">
+<body ng-controller="publicationByWordCtrl">
 	
-	<div ng-controller= "categoryCtrl">
+	<div ng-controller= "topicCtrl">
 	
 		<div ng-include="'views/index/navbar.html'"></div>
 	
 		<ng-view></ng-view>
 		
-		<div ng-include="'views/index/component/parcerias.html'"></div>
+		<div ng-controller= "allPartnerCtrl" ng-include="'views/index/component/parcerias.html'"></div>
 
 		<div ng-include="'views/index/footer.html'"></div>
 		

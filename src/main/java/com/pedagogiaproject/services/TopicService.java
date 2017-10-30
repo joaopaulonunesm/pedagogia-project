@@ -11,6 +11,7 @@ import com.pedagogiaproject.repositories.TopicRepository;
 @Service
 public class TopicService {
 
+	private static final int GREATER_THAN = 0;
 	@Autowired
 	private TopicRepository topicRepository;
 
@@ -22,12 +23,16 @@ public class TopicService {
 		topicRepository.delete(id);
 	}
 
+	public Topic findOne(Long id) {
+		return topicRepository.findOne(id);
+	}
+
 	public List<Topic> findAll() {
 		return topicRepository.findAll();
 	}
 
-	public Topic findByName(String name) {
-		return topicRepository.findByName(name);
+	public Topic findByNameIgnoreCase(String name) {
+		return topicRepository.findByNameIgnoreCase(name);
 	}
 
 	public Topic findByNameUrl(String nameUrl) {
@@ -38,8 +43,8 @@ public class TopicService {
 		return topicRepository.findByNameContaining(name);
 	}
 
-	public List<Topic> findByOrderByAmmountPublication() {
-		return topicRepository.findByOrderByAmmountPublicationDesc();
+	public List<Topic> findByAmmountPublicationGreaterThanOrderByAmmountPublicationDesc() {
+		return topicRepository.findByAmmountPublicationGreaterThanOrderByAmmountPublicationDesc(GREATER_THAN);
 	}
 
 	public String nameToNameUrl(Topic topic) {

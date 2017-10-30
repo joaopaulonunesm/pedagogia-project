@@ -1,20 +1,31 @@
-<div class="card-panel blue">
-    <h5 class="center-align white-text">PUBLICAÇÕES</h5>
+<meta charset="UTF-8" />
+<div class="row">
+   	<div class="col s12">
+		<nav style="margin-top: 8px">
+			<div class="nav-wrapper white">
+		   		<div class="col s12">
+		     	<a class="breadcrumb blue-text font-bold">PUBLICAÇÕES</a>
+		  		</div>
+			</div>
+		</nav>
+		
+	</div>
 </div>
 
-<div ng-repeat="publication in eventsSilver" class="card-panel teal white">
+<div ng-repeat="publication in publications" class="card-panel teal white">
 
     <p class="amber-text">
-        <i class="material-icons" ng-repeat="star in eventsSilver">star</i>
+        <i class="material-icons" ng-repeat="s in star">star</i>
     </p>
 
     <h4 class="center-align">{{ publication.title }}</h4> 
 
-    <img materialboxed class="materialboxed responsive-img " alt="" ng-src="{{ publication.imageUrl }}">
+    <img materialboxed class="materialboxed responsive-img " alt="" ng-src="{{ publication.videoUrl }}">
+    <img materialboxed class="materialboxed responsive-img " alt="" ng-src="{{ publication.photoUrl }}">
 
-    <p><a href="#/">Publicado em {{ publication.eventDate | date:"dd/MM/yyyy 'às' HH:mm" }}</a></p>
+    <p><a ng-href="#/publication/title/{{ publication.titleUrl }}">Publicado em {{ publication.date | date:"dd/MM/yyyy ' às ' HH:mm" }}</a></p>
 
-    <span><p>{{ publication.shortDescription }}</p><span>
+    <span><p>{{ publication.summary }}</p><span>
 
     <div class="divider"></div>
 
@@ -23,13 +34,13 @@
     <div class="card-action" style="text-align: right">
         <div class="row">
             <div class="col s4">
-               <p>451 Visualizações</p>
+               <p>{{ publication.ammountView }} Visualizações</p>
             </div>
             <div class="col s4">
-                <p>39 Comentários</p>
+                <p>{{ publication.comments.lenght }} Comentários</p>
             </div>
             <div class="col s4">
-                <a class="waves-effect waves-light btn blue" href="#/publication/title/hallel-2017-1119450246" >Ver mais</a>
+                <a class="waves-effect waves-light btn blue" ng-href="#/publication/title/{{ publication.titleUrl }}" >Ver mais</a>
             </div>   
         </div>   
     </div>

@@ -1,29 +1,45 @@
+<meta charset="UTF-8" />
 <div class="container">
+
+	<div class="row">
+	   	<div class="col s12">
+			<nav style="margin-top: 8px">
+				<div class="nav-wrapper white">
+			   		<div class="col s12">
+			     	<a ng-href="#/" class="breadcrumb blue-text font-bold">HOME</a>
+			     	<a class="breadcrumb blue-text font-bold">PUBLICAÇÃO</a>
+			  		</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+
     <div class="row">
         <div class="col s8">
             
             <div class="card-panel teal white">
 
                 <p class="amber-text">
-                    <i class="material-icons" ng-repeat="star in [0,1,2,3]">star</i>
+                    <i class="material-icons" ng-repeat="s in star">star</i>
                 </p>
 
                 <h4 class="center-align">{{ publication.title }}</h4> 
 
-                <img materialboxed class="materialboxed responsive-img " alt="" ng-src="{{ publication.imageUrl }}">
+                <img materialboxed class="materialboxed responsive-img " alt="" ng-src="{{ publication.videoUrl }}">
+                <img materialboxed class="materialboxed responsive-img " alt="" ng-src="{{ publication.photoUrl }}">
 
-                <p><a href="#/">Publicado em {{ publication.eventDate | date:"dd/MM/yyyy 'às' HH:mm" }}</a></p>
+                <p><a>Publicado em {{ publication.date | date:"dd/MM/yyyy ' às ' HH:mm" }}</a></p>
 
-                <span><p>{{ publication.completeDescription }}</p><span>
+                <span><p>{{ publication.text }}</p><span>
 
                 <div class="divider"></div>
 
-                <p style="text-align: right">451 Visualizações</p>
+                <p style="text-align: right">{{ publication.ammountView }} Visualizações</p>
 
                 <br>
 
                 <form class="input-field" name="comentarForm">
-                    <textarea id="textarea1" class="materialize-textarea" required ng-model="comentario.texto"></textarea>
+                    <textarea id="textarea1" class="materialize-textarea" required ng-model="comment.texto"></textarea>
                     <label for="textarea1">Deixe seu comentário aqui...</label>
                 </form>
                 
@@ -36,13 +52,12 @@
 
                 <h5><strong>Comentários</strong></h5>  
 
-                <ul class="collection" ng-if="publicacao.comentarios.length > 0">
-                    <li class="collection-item" ng-repeat="comentario in publicacao.comentarios">
-                        <a href="" ng-click="curtirComentario(comentario)" class="secondary-content"> {{ comentario.qntCurtidas }} <i class="material-icons">grade</i></a>
-                        <a ng-href="#/publicacao/{{ publicacao.id }}"> {{comentario.dataCriacao | date}} </a> 
+                <ul class="collection" ng-if="publication.comments.length > 0">
+                    <li class="collection-item" ng-repeat="comment in publication.comments">
+                        <a href="#/"> {{comment.date | date:"dd/MM/yyyy ' às ' HH:mm"}} </a> 
                         <br>
                         <p>
-                            {{comentario.texto}}
+                            {{comment.text}}
                         </p>
                     </li>
                 </ul>

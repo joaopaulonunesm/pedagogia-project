@@ -1,0 +1,47 @@
+<meta charset="UTF-8" />
+
+<div class="container">
+    <div class="row">
+    
+    	<div class="col s12">
+			<nav style="margin-top: 8px">
+				<div class="nav-wrapper white">
+			   		<div class="col s12">
+			     	<a href="#/" class="breadcrumb blue-text font-bold">HOME</a>
+			     	<a class="breadcrumb blue-text font-bold">COMENTÁRIOS</a>
+			  		</div>
+				</div>
+			</nav>
+			
+			<br />
+			
+			<div class="row">
+			    <div class="col s12">
+			        <div class="input-field col s12">
+			            <i class="material-icons prefix">search</i>
+			            <input id="first_name" type="text" ng-model="search">
+			            <label for="first_name">Procure por palavras chave</label>
+			        </div>
+			    </div>
+			</div>
+			
+			<div class="row">
+			    <div class="col s12" ng-repeat="comment in comments | filter: search">
+			        <div class="card-panel hoverable grey lighten-5 z-depth-1">
+			            <div class="row valign-wrapper">
+			                <div class="col s10">
+			                    <span class="title"><h5>{{ comment.text }}</h5></span>
+			                </div>
+			                <div class="col s6 right-align">
+			                    <a tooltipped href="" ng-click="deleteComment(comment.id)" class="btn-floating waves-effect waves-light red" data-position="top" data-tooltip="Deletar comentário">
+			                        <i class="material-icons">remove</i>
+			                    </a>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			
+		</div>
+	</div>
+</div>
