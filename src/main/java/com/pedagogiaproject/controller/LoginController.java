@@ -21,11 +21,11 @@ public class LoginController {
 	@RequestMapping(value = "/logins", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Login> saveLogin(@RequestBody Login login) {
 
-		String userCurrent = loginService.findOne().getUser();
+		String userCurrent = loginService.findOne().getUsername();
 
 		String passwordCurrent = loginService.findOne().getPassword();
 
-		if (login.getUser() == null || login.getUser().isEmpty() || login.getUser().equals(userCurrent)) {
+		if (login.getUsername() == null || login.getUsername().isEmpty() || login.getUsername().equals(userCurrent)) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
