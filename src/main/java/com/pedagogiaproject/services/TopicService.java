@@ -11,7 +11,6 @@ import com.pedagogiaproject.repositories.TopicRepository;
 @Service
 public class TopicService {
 
-	private static final int GREATER_THAN = 0;
 	@Autowired
 	private TopicRepository topicRepository;
 
@@ -44,7 +43,7 @@ public class TopicService {
 	}
 
 	public List<Topic> findByAmmountPublicationGreaterThanOrderByAmmountPublicationDesc() {
-		return topicRepository.findByAmmountPublicationGreaterThanOrderByAmmountPublicationDesc(GREATER_THAN);
+		return topicRepository.findByOrderByAmmountPublicationDesc();
 	}
 
 	public String nameToNameUrl(Topic topic) {

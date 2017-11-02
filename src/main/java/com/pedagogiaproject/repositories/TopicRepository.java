@@ -16,6 +16,6 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
 
 	List<Topic> findByNameContaining(String name);
 
-	List<Topic> findByAmmountPublicationGreaterThanOrderByAmmountPublicationDesc(int greaterThan);
+	List<Topic> findByOrderByAmmountPublicationDesc();
 
 }
