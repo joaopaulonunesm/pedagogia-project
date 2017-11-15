@@ -72,6 +72,24 @@ public class TopicController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/topics/id/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Topic> deleteTopic(@PathVariable Long id) {
+
+		Topic topic = topicService.findOne(id);
+
+		if (topic == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		if (topic.getAmmountPublication() > 0) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+		topicService.delete(topic.getId());
+
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/topics/name/containg/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Topic>> getTopicByNameContaing(@PathVariable String name) {
 
