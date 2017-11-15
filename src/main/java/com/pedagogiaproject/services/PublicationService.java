@@ -22,6 +22,10 @@ public class PublicationService {
 		publicationRepository.delete(id);
 	}
 
+	public Publication findOne(Long id) {
+		return publicationRepository.findOne(id);
+	}
+
 	public Publication findByTitleUrl(String publication) {
 		return publicationRepository.findByTitleUrl(publication);
 	}
@@ -33,7 +37,7 @@ public class PublicationService {
 	public List<Publication> findByTitleContaingIgnoreCase(String title) {
 		return publicationRepository.findByTitleContainingIgnoreCase(title);
 	}
-	
+
 	public List<Publication> findByTextContaingIgnoreCase(String word) {
 		return publicationRepository.findByTextContainingIgnoreCase(word);
 	}
@@ -62,7 +66,5 @@ public class PublicationService {
 
 		return urlTitle;
 	}
-
-
 
 }

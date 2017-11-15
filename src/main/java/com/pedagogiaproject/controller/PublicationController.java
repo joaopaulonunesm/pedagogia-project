@@ -136,6 +136,26 @@ public class PublicationController {
 
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/publications/id/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Publication> deletePublication(@PathVariable Long id) {
+
+		Publication publication = publicationService.findOne(id);
+
+		if (publication == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		commentService.deleteAllByPublication(publication);
+
+		Topic topic = publication.getTopic();
+		topic.setAmmountPublication(topic.getAmmountPublication() - 1);
+		topicService.save(topic);
+
+		publicationService.delete(publication.getId());
+
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/publications/title/url/{titleUrl}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Publication> getOnePublication(@PathVariable String titleUrl) {
