@@ -4,5 +4,5 @@ angular.module("pedagogiaApp").value("configs", {
 	//siteUrl: "http://localhost:8080",
 
 	baseUrl: "https://pedagogiaproject.herokuapp.com",
-	siteUrl: "https://pedagogiaproject.herokuapp.com"
+	siteUrl: "http://www.jobtipsmaringa.com"
 });
