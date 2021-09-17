@@ -2,6 +2,7 @@ package com.pedagogiaproject.services;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,21 +10,21 @@ import com.pedagogiaproject.models.Topic;
 import com.pedagogiaproject.repositories.TopicRepository;
 
 @Service
+@RequiredArgsConstructor
 public class TopicService {
 
-	@Autowired
-	private TopicRepository topicRepository;
+	private final TopicRepository topicRepository;
 
 	public Topic save(Topic topic) {
 		return topicRepository.save(topic);
 	}
 
 	public void delete(Long id) {
-		topicRepository.delete(id);
+		topicRepository.deleteById(id);
 	}
 
 	public Topic findOne(Long id) {
-		return topicRepository.findOne(id);
+		return topicRepository.findById(id).orElseThrow(() -> new RuntimeException("Tópico não encontrado pelo ID " + id));
 	}
 
 	public List<Topic> findAll() {
@@ -58,5 +59,4 @@ public class TopicService {
 
 		return nameUrl;
 	}
-
 }

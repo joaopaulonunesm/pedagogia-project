@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.servlet.ServletException;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,16 +26,12 @@ import com.pedagogiaproject.services.PublicationService;
 import com.pedagogiaproject.services.TopicService;
 
 @Controller
+@RequiredArgsConstructor
 public class PublicationController {
 
-	@Autowired
-	private PublicationService publicationService;
-
-	@Autowired
-	private TopicService topicService;
-
-	@Autowired
-	private CommentService commentService;
+	private final PublicationService publicationService;
+	private final TopicService topicService;
+	private final CommentService commentService;
 
 	@RequestMapping(value = "/publications", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Publication> postPublication(@RequestBody Publication publication) throws ServletException {

@@ -1,5 +1,9 @@
 package com.pedagogiaproject.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Topic {
 
 	@Id
@@ -19,37 +26,4 @@ public class Topic {
 	private String name;
 	@Column(nullable = false)
 	private String nameUrl;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Integer getAmmountPublication() {
-		return ammountPublication;
-	}
-
-	public void setAmmountPublication(Integer ammountPublication) {
-		this.ammountPublication = ammountPublication;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getNameUrl() {
-		return nameUrl;
-	}
-
-	public void setNameUrl(String nameUrl) {
-		this.nameUrl = nameUrl;
-	}
-
 }

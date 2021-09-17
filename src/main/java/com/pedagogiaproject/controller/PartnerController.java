@@ -2,6 +2,7 @@ package com.pedagogiaproject.controller;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,10 +17,10 @@ import com.pedagogiaproject.models.Partner;
 import com.pedagogiaproject.services.PartnerService;
 
 @Controller
+@RequiredArgsConstructor
 public class PartnerController {
 
-	@Autowired
-	private PartnerService partnerService;
+	private final PartnerService partnerService;
 
 	@RequestMapping(value = "/partners", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Partner> postPartner(@RequestBody Partner partner) {

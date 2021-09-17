@@ -2,6 +2,7 @@ package com.pedagogiaproject.services;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,17 +10,17 @@ import com.pedagogiaproject.models.Partner;
 import com.pedagogiaproject.repositories.PartnerRepository;
 
 @Service
+@RequiredArgsConstructor
 public class PartnerService {
 
-	@Autowired
-	private PartnerRepository partnerRepository;
+	private final PartnerRepository partnerRepository;
 
 	public Partner save(Partner partner) {
 		return partnerRepository.save(partner);
 	}
 
 	public void delete(Long id) {
-		partnerRepository.delete(id);
+		partnerRepository.deleteById(id);
 	}
 
 	public List<Partner> findAll() {
@@ -46,5 +47,4 @@ public class PartnerService {
 
 		return nameUrl;
 	}
-
 }

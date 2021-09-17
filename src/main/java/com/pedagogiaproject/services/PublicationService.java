@@ -2,6 +2,7 @@ package com.pedagogiaproject.services;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import com.pedagogiaproject.models.Publication;
 import com.pedagogiaproject.repositories.PublicationRepository;
 
 @Service
+@RequiredArgsConstructor
 public class PublicationService {
 
 	@Autowired
@@ -19,11 +21,11 @@ public class PublicationService {
 	}
 
 	public void delete(Long id) {
-		publicationRepository.delete(id);
+		publicationRepository.deleteById(id);
 	}
 
 	public Publication findOne(Long id) {
-		return publicationRepository.findOne(id);
+		return publicationRepository.findById(id).orElseThrow(() -> new RuntimeException("Publicação por ID não encontrada. Id: " + id));
 	}
 
 	public Publication findByTitleUrl(String publication) {
@@ -66,5 +68,4 @@ public class PublicationService {
 
 		return urlTitle;
 	}
-
 }

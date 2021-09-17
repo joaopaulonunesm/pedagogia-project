@@ -7,9 +7,15 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Partner {
 
 	@Id
@@ -22,45 +28,4 @@ public class Partner {
 	@Lob
 	@Type(type = "org.hibernate.type.TextType")
 	private String description;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getNameUrl() {
-		return nameUrl;
-	}
-
-	public void setNameUrl(String nameUrl) {
-		this.nameUrl = nameUrl;
-	}
-
-	public String getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 }

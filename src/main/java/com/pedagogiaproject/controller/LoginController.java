@@ -1,6 +1,8 @@
 package com.pedagogiaproject.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pedagogiaproject.models.Login;
+import com.pedagogiaproject.services.LoginService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -9,14 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.pedagogiaproject.models.Login;
-import com.pedagogiaproject.services.LoginService;
-
 @Controller
+@RequiredArgsConstructor
 public class LoginController {
 
-	@Autowired
-	private LoginService loginService;
+	private final LoginService loginService;
 
 	@RequestMapping(value = "/logins", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Login> saveLogin(@RequestBody Login login) {
@@ -39,7 +38,6 @@ public class LoginController {
 
 	@RequestMapping(value = "/logins", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Login> getLogin() {
-
 		return new ResponseEntity<>(loginService.findOne(), HttpStatus.OK);
 	}
 

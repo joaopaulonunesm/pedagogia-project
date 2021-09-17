@@ -1,4 +1,4 @@
-package com.pedagogiaproject;
+package com.pedagogiaproject.configuration;
 
 import java.io.IOException;
 
